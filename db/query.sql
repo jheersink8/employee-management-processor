@@ -1,6 +1,6 @@
--- SELECT * FROM department;
--- SELECT * FROM role;
--- SELECT * FROM employee;
+SELECT * FROM department;
+SELECT * FROM role;
+SELECT * FROM employee;
 
 
 SELECT e1.first_name, e1.last_name, role.title, department.name, e1.manager_id, 
