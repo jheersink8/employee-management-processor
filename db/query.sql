@@ -1,3 +1,10 @@
-SELECT * FROM department;
-SELECT * FROM employee;
-SELECT * FROM role;
+-- SELECT * FROM department;
+-- SELECT * FROM role;
+-- SELECT * FROM employee;
+
+
+SELECT e1.first_name, e1.last_name, role.title, department.name, e1.manager_id, 
+FROM department
+JOIN role ON department.id = role.department_id
+JOIN employee e1 ON role.id = e1.role_id
+LEFT JOIN employee e2 ON e1.manager_id = e2.id;
