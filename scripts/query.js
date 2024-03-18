@@ -10,9 +10,14 @@ const pool = new Pool({
     port: 5432,
 });
 
+
+
 // Queries for everything in the "View" category
 let viewQuestions = function (results) {
-    console.log(`You can see the ${results} of a view request!`);
+    pool.query('SELECT * FROM department', function (err, { rows }) {
+ 
+        console.table(rows);
+    });
 };
 
 // Queries for everything in the "Add" category

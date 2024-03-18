@@ -3,16 +3,16 @@ const questions = {
     // These are NOT dynamic variables. If you change them here, you have to update them elsewhere. 
     name: ['initialQuestions', 'viewQuestions', 'addQuestions', 'updateQuestions', 'deleteQuestions'],
     
-    message: ['I want to:', 'I want to view:', 'I want to add:', 'I want to update:', 'I want to delete:'],
+    message: ['ROOT MENU: I want to:', 'I want to view:', 'I want to add:', 'I want to update:', 'I want to delete:'],
     
     choices: [
        
         // Initial Questions //
         [
-            'view reports from the EMP',
-            'add data to the EMP',
-            'update existing data in the EMP',
-            'delete data from the EMP'
+            'View reports from the EMP',
+            'Add data to the EMP',
+            'Update existing data in the EMP',
+            'Delete data from the EMP'
         ],
        
         // "I want to view:" questions //
