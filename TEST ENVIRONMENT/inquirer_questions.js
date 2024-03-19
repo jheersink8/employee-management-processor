@@ -1,9 +1,13 @@
-const inquirer = require('inquirer');
-function ListQuestions(type, name, message, choices) {
-    this.type = type,
-        this.name = name,
-        this.message = message,
-        this.choices = choices
+class ListQuestions {
+    constructor(type, name, message, choices) {
+        this.type = type,
+            this.name = name,
+            this.message = message,
+            this.choices = choices
+    }
+    follow() {
+        console.log(response.name);
+    }
 };
 
 function InputQuestions(type, name, message) {
@@ -52,4 +56,8 @@ const set3DeleteRole1 = new ListQuestions('list', 'selRole', 'Select a role to d
 
 // DELETE AN EMPLOYEE QUESTIONS
 const set3DeleteEmployee1 = new ListQuestions('list', 'selEmployee', 'Select an employee to delete.', ['PLACEHOLDER_DELETE_A_EMPLOYEE']);
-module.exports = { set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions, set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set3UpdateEmployeeRole1, set3UpdateEmployeeRole2, set3UpdateEmployeeManager1, set3UpdateEmployeeManager2, set3DeleteDepartment1, set3DeleteRole1, set3DeleteEmployee1 };
+
+// FINAL QUESTION
+const set4ReturnQuit = new ListQuestions('list', 'returnHome', 'Would you like to return to the root menu or quit?', ['Return to Root Menu', 'Quit']);
+
+module.exports = { set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions, set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set3UpdateEmployeeRole1, set3UpdateEmployeeRole2, set3UpdateEmployeeManager1, set3UpdateEmployeeManager2, set3DeleteDepartment1, set3DeleteRole1, set3DeleteEmployee1, set4ReturnQuit };
