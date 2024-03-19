@@ -1,7 +1,7 @@
 // Import PostgreSQL Pool package, Inquirer, and inquirer questions (iq)
 const inquirer = require('inquirer');
-const iq = require('./scripts/questions');
-const query = require('./scripts/query')
+const iq = require('../scripts/questions');
+const query = require('../scripts/query')
 
 // User prompts through inquirer questions from "questions.js" file
 function init() {

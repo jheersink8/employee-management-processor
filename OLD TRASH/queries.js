@@ -1,4 +1,4 @@
-const iq = require('./questions');
+const iq = require('../scripts/questions');
 const { Pool } = require('pg');
 
 const pool = new Pool({

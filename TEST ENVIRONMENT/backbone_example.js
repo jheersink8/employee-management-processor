@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const iq = require('./scripts/questions');
+const iq = require('../scripts/questions');
 const { Pool } = require('pg');
 
 const pool = new Pool({
