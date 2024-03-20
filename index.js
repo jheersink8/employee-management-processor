@@ -1,6 +1,6 @@
 const inquirer = require('inquirer');
 const questions = require('./scripts/questions');
-const query = require('./scripts/view-query')
+const query = require('./scripts/queries')
 
 function init() {
     inquirer.prompt([
@@ -43,7 +43,6 @@ function init() {
 };
 
 // SET 3 QUESTIONS - Run the query depending on user selections/input
-
 // This function displays the table for the view queries
 async function viewQuestions(result) {
     switch (result) {
@@ -60,6 +59,23 @@ async function viewQuestions(result) {
         // View all employees
         case questions.set2ViewQuestions.choices[2]:
             await query.runViewQuery3.runQuery();
+            returnQuit();
+            break;
+        // View all employees by manager
+        case questions.set2ViewQuestions.choices[3]:
+            await inquirer.prompt([questions.set3ViewEmployeeManager])
+            await query.runViewQuery4.runQuery();
+            returnQuit();
+            break;
+        // View all employees by department
+        case questions.set2ViewQuestions.choices[4]:
+            await inquirer.prompt([questions.set3ViewEmployeeDepartment])
+            await query.runViewQuery5.runQuery();
+            returnQuit();
+            break;
+        // View the total utalized employee budget by department
+        case questions.set2ViewQuestions.choices[5]:
+            await query.runViewQuery6.runQuery();
             returnQuit();
             break;
     }
