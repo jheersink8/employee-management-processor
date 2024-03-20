@@ -38,7 +38,7 @@ function init() {
                                 // Function to query "VIEW" answers
                                 case iq.questions.name[1]:
                                     query.viewQuestions(questionIndex)
-                                                                      init();
+                                    init();
                                 // Function to query "ADD" answers
                                 case iq.questions.name[2]:
                                     query.addQuestions(questionIndex);

@@ -36,4 +36,7 @@ const runViewQuery5 = new ViewQuery("SELECT e.id AS employee_id, e.first_name, e
 const runViewQuery6 = new ViewQuery("SELECT department.name, SUM(role.salary) AS total_salary_per_department FROM role JOIN department ON role.department_id = department.id GROUP BY department.name;");
 
 
-module.exports = { runViewQuery1, runViewQuery2, runViewQuery3, runViewQuery4, runViewQuery5, runViewQuery6 };
+
+
+
+module.exports = { runViewQuery1, runViewQuery2, runViewQuery3, runViewQuery4, runViewQuery5, runViewQuery6, popChoiceView1 };

@@ -3,6 +3,7 @@ const questions = require('./scripts/questions');
 const query = require('./scripts/queries')
 
 function init() {
+    console.log("Welcome to the EMP (Employee Management Portal)!")
     inquirer.prompt([
         // SET 1 QUESTIONS - Initial question to determine if query is View, Add, Edit, or Delete
         questions.set1questions,
@@ -63,6 +64,8 @@ async function viewQuestions(result) {
             break;
         // View all employees by manager
         case questions.set2ViewQuestions.choices[3]:
+            // Load query results in question options
+            // Populate choices in question
             await inquirer.prompt([questions.set3ViewEmployeeManager])
             await query.runViewQuery4.runQuery();
             returnQuit();
