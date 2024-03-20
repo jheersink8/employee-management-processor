@@ -1,7 +1,6 @@
 const inquirer = require('inquirer');
 const questions = require('./inquirer_questions');
 
-let queryType;
 inquirer.prompt([
     // Initial question to determine if query is View, Add, Edit, or Delete
     questions.set1questions,
@@ -12,13 +11,11 @@ inquirer.prompt([
             // This case routes to the VIEW formulas
             case questions.set1questions.choices[0]:
                 inquirer.prompt([questions.set2ViewQuestions])
-                queryType = "VIEW";
                 break;
             // This case routes to the ADD formulas
             case questions.set1questions.choices[1]:
                 inquirer.prompt([questions.set2AddQuestions])
                     .then((response) => {
-                        queryType = "ADD";
                         addQuestions(response[questions.set2AddQuestions.name]);
                     })
                 break;
@@ -26,7 +23,6 @@ inquirer.prompt([
             case questions.set1questions.choices[2]:
                 inquirer.prompt([questions.set2UpdateQuestions])
                     .then((response) => {
-                        queryType = "UPDATE";
                         updateQuestions(response[questions.set2UpdateQuestions.name]);
                     })
                 break;
@@ -34,12 +30,16 @@ inquirer.prompt([
             case questions.set1questions.choices[3]:
                 inquirer.prompt([questions.set2DeleteQuestions])
                     .then((response) => {
-                        queryType = "DELETE";
                         deleteQuestions(response[questions.set2DeleteQuestions.name]);
                     })
                 break;
         }
     })
+
+// This function displays the table for the view queries
+function viewQuestions(result) {
+
+};
 
 // This function asks the user prompts for adding data to the database
 function addQuestions(result) {

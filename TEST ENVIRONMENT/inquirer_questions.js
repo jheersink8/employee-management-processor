@@ -1,15 +1,12 @@
-class ListQuestions {
-    constructor(type, name, message, choices) {
-        this.type = type,
-            this.name = name,
-            this.message = message,
-            this.choices = choices
-    }
-    follow() {
-        console.log(response.name);
-    }
+// Constructor to organize and build out list formatted inquirer questions
+function ListQuestions(type, name, message, choices) {
+    this.type = type,
+        this.name = name,
+        this.message = message,
+        this.choices = choices
 };
 
+// Constructor to organize and build out input formatted inquirer questions
 function InputQuestions(type, name, message) {
     this.type = type,
         this.name = name,
