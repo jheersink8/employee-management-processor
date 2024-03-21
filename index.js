@@ -101,15 +101,38 @@ async function addQuestions(result) {
     switch (result) {
         // Add a department
         case questions.set2AddQuestions.choices[0]:
-            inquirer.prompt([questions.set3AddDepartment1])
+            const userDepartmentAnswer = await inquirer.prompt([questions.set3AddDepartment1]);
+
+
+            // ADD QUERY HERE USING RESULTS FROM userDepartmentAnswer
+            // ------------------------------------------------------
+            // ---------------RUN FINAL QUERY ---------------------
+
+
+            // ------------------------------------------------------
+
+
             returnQuit();
             break;
         // Add a role
         case questions.set2AddQuestions.choices[1]:
-            inquirer.prompt([
-                questions.set3AddRole1,
-                questions.set3AddRole2,
-                questions.set3AddRole3,])
+            const userRoleAnswer = await inquirer.prompt([questions.set3AddRole1]);
+            const userSalaryAnswer = await inquirer.prompt([questions.set3AddRole2]);
+            // ---------------QUERY INQUIRER CHOICES---------------------
+            const selDepartmentResults = await query.runAddQuery1.runQuery(); // Load query results for data 
+            const set3AddRole3 = new questions.ListQuestions('list', 'selDepartment', 'Select the department for the role.', selDepartmentResults); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userSelDepartmentAnswer = await inquirer.prompt([set3AddRole3]); // Define user response
+            const userSelDepartmentParsed = userSelDepartmentAnswer.selDepartment.split('|')[0]; // Parse out relevant data for next query
+
+            // ADD QUERY HERE USING RESULTS FROM userDepartmentAnswer
+            // ------------------------------------------------------
+            // ---------------RUN FINAL QUERY ---------------------
+
+
+            // ------------------------------------------------------
+
+
             returnQuit();
             break;
         // Add an employee
