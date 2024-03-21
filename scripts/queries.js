@@ -43,7 +43,24 @@ const runViewQuery5 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCA
 // View the total utalized employee budget by department
 const runViewQuery6 = new ViewQuery("SELECT department.name, SUM(role.salary) AS total_salary_per_department FROM role JOIN department ON role.department_id = department.id GROUP BY department.name;");
 
+//--------------------- ADD QUERIES ---------------------//
+//--------------------- UPDATE QUERIES ---------------------//
+// Constructor function for building "VIEW" related queries
+function UpdateQuery(tableQuery) {
+    this.tableQuery = tableQuery;
+    this.runQuery = async function () {
+        const { rows } = await pool.query(`${this.tableQuery}`);
+    };
+};
+// Update the employee's role
+const runUpdateQuery1 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (id,' | ', first_name,' ', last_name)) FROM employee");
+const runUpdateQuery2 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (id,' | ', title)) FROM role");
+// Update the employee's manager
+const runUpdateQuery3 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (id,' | ', first_name,' ', last_name)) FROM employee");
+const runUpdateQuery4 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (m.id,' | ',m.first_name,' ', m.last_name)) FROM employee e LEFT JOIN employee m ON e.manager_id = m.id WHERE m.first_name IS NOT NULL;");
+
+//--------------------- DELETE QUERIES ---------------------//
 
 
 
-module.exports = { ViewQuery, runViewQuery1, runViewQuery2, runViewQuery3, runViewQuery4, runViewQuery5, runViewQuery6 };
+module.exports = { ViewQuery, UpdateQuery, runViewQuery1, runViewQuery2, runViewQuery3, runViewQuery4, runViewQuery5, runViewQuery6, runUpdateQuery1, runUpdateQuery2, runUpdateQuery3, runUpdateQuery4 };

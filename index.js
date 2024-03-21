@@ -97,11 +97,12 @@ async function viewQuestions(result) {
 };
 
 // This function asks the user prompts for adding data to the database
-function addQuestions(result) {
+async function addQuestions(result) {
     switch (result) {
         // Add a department
         case questions.set2AddQuestions.choices[0]:
             inquirer.prompt([questions.set3AddDepartment1])
+            returnQuit();
             break;
         // Add a role
         case questions.set2AddQuestions.choices[1]:
@@ -109,6 +110,7 @@ function addQuestions(result) {
                 questions.set3AddRole1,
                 questions.set3AddRole2,
                 questions.set3AddRole3,])
+            returnQuit();
             break;
         // Add an employee
         case questions.set2AddQuestions.choices[2]:
@@ -117,41 +119,72 @@ function addQuestions(result) {
                 questions.set3AddEmployee2,
                 questions.set3AddEmployee3,
                 questions.set3AddEmployee4,])
+            returnQuit();
             break;
     }
 };
 // This function asks the user prompts for updating data in the database
-function updateQuestions(result) {
+async function updateQuestions(result) {
     switch (result) {
         // Update an employee's role
         case questions.set2UpdateQuestions.choices[0]:
-            inquirer.prompt([
-                questions.set3UpdateEmployeeRole1,
-                questions.set3UpdateEmployeeRole2])
+            // ---------------QUERY INQUIRER CHOICES ROUND 1---------------------    
+            const employeeUpdateResults = await query.runUpdateQuery1.runQuery(); // Load query results for data 
+            const set3UpdateEmployeeRole1 = new questions.ListQuestions('list', 'selEmployee', 'Select an employee to update their role.', employeeUpdateResults); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userEmployeeUpdateRoleAnswer1 = await inquirer.prompt([set3UpdateEmployeeRole1]); // Define user response
+            const userEmployeeUpdateRoleParsed1 = userEmployeeUpdateRoleAnswer1.selEmployee.split('|')[0]; // Parse out relevant data for next query
+
+            // ---------------QUERY INQUIRER CHOICES ROUND 2---------------------    
+            const roleUpdateResults = await query.runUpdateQuery2.runQuery(); // Load query results for data 
+            const set3UpdateEmployeeRole2 = new questions.ListQuestions('list', 'selRole', 'Select a role for the employee.', roleUpdateResults); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userEmployeeUpdateRoleAnswer2 = await inquirer.prompt([set3UpdateEmployeeRole2]); // Define user response
+            const userEmployeeUpdateRoleParsed2 = userEmployeeUpdateRoleAnswer2.selRole.split('|')[0]; // Parse out relevant data for next query
+
+            // ---------------RUN UPDATE QUERY ---------------------
+            const runUpdateQuery = new query.UpdateQuery(`UPDATE employee SET role_id=${userEmployeeUpdateRoleParsed2} WHERE id=${userEmployeeUpdateRoleParsed1}`);
+            await runUpdateQuery.runQuery();
+            returnQuit();
             break;
         // Update an employee's manager
         case questions.set2UpdateQuestions.choices[1]:
-            inquirer.prompt([
-                questions.set3UpdateEmployeeManager1,
-                questions.set3UpdateEmployeeManager2,
-            ])
+            // ---------------QUERY INQUIRER CHOICES ROUND 1---------------------    
+            const employeeUpdateResultsx = await query.runUpdateQuery3.runQuery(); // Load query results for data 
+            const set3UpdateEmployeeManager1 = new questions.ListQuestions('list', 'selEmployee', 'Select an employee to update their manager.', employeeUpdateResultsx); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userEmployeeUpdateRoleAnswer1x = await inquirer.prompt([set3UpdateEmployeeManager1]); // Define user response
+            const userEmployeeUpdateRoleParsed1x = userEmployeeUpdateRoleAnswer1x.selEmployee.split('|')[0]; // Parse out relevant data for next query
+            // ---------------QUERY INQUIRER CHOICES ROUND 2---------------------    
+            const ManagerUpdateResults = await query.runUpdateQuery4.runQuery(); // Load query results for data 
+            const set3UpdateEmployeeManager2 = new questions.ListQuestions('list', 'selManager', 'Select the new manager for the employee.', ManagerUpdateResults); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userEmployeeUpdateManagerAnswer2 = await inquirer.prompt([set3UpdateEmployeeManager2]); // Define user response
+            const userEmployeeUpdateManagerParsed2 = userEmployeeUpdateManagerAnswer2.selManager.split('|')[0]; // Parse out relevant data for next query
+            // ---------------RUN UPDATE QUERY ---------------------
+            const runUpdateQueryx = new query.UpdateQuery(`UPDATE employee SET manager_id=${userEmployeeUpdateManagerParsed2} WHERE id=${userEmployeeUpdateRoleParsed1x}`);
+            await runUpdateQueryx.runQuery();
+            returnQuit();
             break;
     }
 };
 // This function asks the user prompts for deleting data from the database
-function deleteQuestions(result) {
+async function deleteQuestions(result) {
     switch (result) {
         // Delete a department
         case questions.set2DeleteQuestions.choices[0]:
             inquirer.prompt([questions.set3DeleteDepartment1])
+            returnQuit();
             break;
         // Delete a role
         case questions.set2DeleteQuestions.choices[1]:
             inquirer.prompt([questions.set3DeleteRole1])
+            returnQuit();
             break;
         // Delete an employee
         case questions.set2DeleteQuestions.choices[2]:
             inquirer.prompt([questions.set3DeleteEmployee1])
+            returnQuit();
             break;
     }
 };

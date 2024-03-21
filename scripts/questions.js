@@ -25,10 +25,6 @@ const set2UpdateQuestions = new ListQuestions('list', 'updateQuestions', 'I want
 const set2DeleteQuestions = new ListQuestions('list', 'deleteQuestions', 'I want to delete:', ['a department', 'a role', 'an employee',]);
 
 // Third set of questions //
-
-// VIEW ALL EMPLOYEES BY DEPARTMENT QUESTIONS
-const set3ViewEmployeeDepartment = new ListQuestions('list', 'selDepartment', 'Select the name of the department to see its employees.', ['PLACEHOLDER_VIEW_DEPARTMENT_EMPLOYEES']);
-
 // ADD DEPARTMENT QUESTIONS
 const set3AddDepartment1 = new InputQuestions('input', 'entDepartment', 'Enter the name of the department to add.');
 
@@ -43,14 +39,6 @@ const set3AddEmployee2 = new InputQuestions('input', 'entLast', 'Enter the emplo
 const set3AddEmployee3 = new ListQuestions('list', 'selRole', 'Select the employee`s role.', ['PLACEHOLDER_ADD_EMPLOYEE']);
 const set3AddEmployee4 = new ListQuestions('list', 'selManager', 'Select the employee`s manager.', ['PLACEHOLDER_ADD_EMPLOYEE']);
 
-// UPDATE EMPLOYEE'S ROLE QUESTIONS
-const set3UpdateEmployeeRole1 = new ListQuestions('list', 'selEmployee', 'Select an employee to update their role.', ['PLACEHOLDER_UPDATE_EMPLOYEE_ROLE']);
-const set3UpdateEmployeeRole2 = new ListQuestions('list', 'selRole', 'Select a role for the employee.', ['PLACEHOLDER_UPDATE_EMPLOYEE_ROLE']);
-
-// UPDATE EMPLOYEE'S MANAGER QUESTIONS
-const set3UpdateEmployeeManager1 = new ListQuestions('list', 'selEmployee', 'Select an employee to update their manager.', ['PLACEHOLDER_UPDATE_EMPLOYEE_MANAGER']);
-const set3UpdateEmployeeManager2 = new ListQuestions('list', 'selManager', 'Select the new manager for the employee.', ['PLACEHOLDER_UPDATE_EMPLOYEE_MANAGER']);
-
 // DELETE A DEPARTMENT QUESTIONS
 const set3DeleteDepartment1 = new ListQuestions('list', 'selDepartment', 'Select a department to delete.', ['PLACEHOLDER_DELETE_A_DEPARTMENT']);
 
@@ -63,6 +51,6 @@ const set3DeleteEmployee1 = new ListQuestions('list', 'selEmployee', 'Select an 
 // FINAL QUESTION
 const set4ReturnQuit = new ListQuestions('list', 'returnHome', 'Would you like to return to the root menu or quit?', ['Return to Root Menu', 'Quit']);
 
-module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions,  set3ViewEmployeeDepartment, set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set3UpdateEmployeeRole1, set3UpdateEmployeeRole2, set3UpdateEmployeeManager1, set3UpdateEmployeeManager2, set3DeleteDepartment1, set3DeleteRole1, set3DeleteEmployee1, set4ReturnQuit };
+module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions,  set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set3DeleteDepartment1, set3DeleteRole1, set3DeleteEmployee1, set4ReturnQuit };
 
 
