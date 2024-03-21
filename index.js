@@ -65,20 +65,27 @@ async function viewQuestions(result) {
         // View all employees by manager
         case questions.set2ViewQuestions.choices[3]:
             // ---------------QUERY INQUIRER CHOICES---------------------
-            const results = await query.runViewQuery4.runQuery(); // Load query results for managers 
-            const set3ViewEmployeeManager = new questions.ListQuestions('list', 'selManager', 'Select the name of the manager to see their direct reports.', results); // Populate choices in question
+            const managerViewResults = await query.runViewQuery4.runQuery(); // Load query results for managers 
+            const set3ViewEmployeeManager = new questions.ListQuestions('list', 'selManager', 'Select the name of the manager to see their direct reports.', managerViewResults); // Populate choices in question
             // ---------------PRESENT QUERIED RESULTS---------------------
-            const userAnswer = await inquirer.prompt([set3ViewEmployeeManager]) // Define user response
-            const userAnswerParsed = userAnswer.selManager.split('|')[0]; // Parse out relevant data for next query
+            const userManagerViewAnswer = await inquirer.prompt([set3ViewEmployeeManager]); // Define user response
+            const userManagerViewParsed = userManagerViewAnswer.selManager.split('|')[0]; // Parse out relevant data for next query
             // ---------------RUN FINAL QUERY ---------------------
-            const runViewQuery4 = new query.ViewQuery(`SELECT CONCAT (id,' | ', first_name,' ',  last_name) FROM employee WHERE manager_id = ${userAnswerParsed}`);
+            const runViewQuery4 = new query.ViewQuery(`SELECT CONCAT (id,' | ', first_name,' ',  last_name) FROM employee WHERE manager_id = ${userManagerViewParsed}`);
             await runViewQuery4.runQuery();
             returnQuit();
             break;
         // View all employees by department
         case questions.set2ViewQuestions.choices[4]:
-            await inquirer.prompt([questions.set3ViewEmployeeDepartment])
-            await query.runViewQuery5.runQuery();
+            // ---------------QUERY INQUIRER CHOICES---------------------
+            const departmentsViewResults = await query.runViewQuery5.runQuery(); // Load query results for data 
+            const set3ViewEmployeeDepartment = new questions.ListQuestions('list', 'selDepartment', 'Select the name of the department to see its employees.', departmentsViewResults); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userDepartmentAnswer = await inquirer.prompt([set3ViewEmployeeDepartment]); // Define user response
+            const userDepartmentParsed = userDepartmentAnswer.selDepartment.split('|')[0]; // Parse out relevant data for next query
+            // ---------------RUN FINAL QUERY ---------------------
+            const runViewQuery5 = new query.ViewQuery(`SELECT CONCAT (employee.id,' | ', first_name,' ',  last_name) FROM employee JOIN role ON employee.role_id=role.id JOIN department ON role.department_id=department.id WHERE department_id = ${userDepartmentParsed}`);
+            await runViewQuery5.runQuery();
             returnQuit();
             break;
         // View the total utalized employee budget by department
