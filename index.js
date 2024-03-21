@@ -173,17 +173,49 @@ async function deleteQuestions(result) {
     switch (result) {
         // Delete a department
         case questions.set2DeleteQuestions.choices[0]:
-            inquirer.prompt([questions.set3DeleteDepartment1])
+            // ---------------QUERY INQUIRER CHOICES ROUND 2---------------------    
+            const departmentDeleteResults = await query.runDeleteQuery1.runQuery(); // Load query results for data 
+            const set3DeleteDepartment1 = new questions.ListQuestions('list', 'selDepartment', 'Select a department to delete.', departmentDeleteResults); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userDepartmentDeleteAnswer = await inquirer.prompt([set3DeleteDepartment1]); // Define user response
+            const userDepartmentDeleteParsed = userDepartmentDeleteAnswer.selDepartment.split('|')[0]; // Parse out relevant data for next query
+            // ---------------RUN UPDATE QUERY ---------------------
+            const runDeleteQuery1 = new query.UpdateQuery(`DELETE FROM employee WHERE role_id IN (SELECT id FROM role WHERE department_id=${userDepartmentDeleteParsed})`);
+            const runDeleteQuery1x = new query.UpdateQuery(`DELETE FROM role WHERE department_id=${userDepartmentDeleteParsed}`);
+            const runDeleteQuery1y = new query.UpdateQuery(`DELETE FROM department WHERE id=${userDepartmentDeleteParsed}`);
+            await runDeleteQuery1.runQuery();
+            await runDeleteQuery1x.runQuery();
+            await runDeleteQuery1y.runQuery();
+
             returnQuit();
             break;
         // Delete a role
         case questions.set2DeleteQuestions.choices[1]:
-            inquirer.prompt([questions.set3DeleteRole1])
+            // ---------------QUERY INQUIRER CHOICES ROUND 2---------------------    
+            const roleDeleteResults = await query.runDeleteQuery2.runQuery(); // Load query results for data 
+            const set3DeleteRole1 = new questions.ListQuestions('list', 'selRole', 'Select a role to delete.', roleDeleteResults);
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userRoleDeleteAnswer = await inquirer.prompt([set3DeleteRole1]); // Define user response
+            const userRoleDeleteParsed = userRoleDeleteAnswer.selRole.split('|')[0]; // Parse out relevant data for next query
+            // ---------------RUN UPDATE QUERY ---------------------
+            const runDeleteQuery2 = new query.UpdateQuery(`DELETE FROM employee WHERE role_id=${userRoleDeleteParsed}`);
+            const runDeleteQuery2x = new query.UpdateQuery(`DELETE FROM role WHERE id=${userRoleDeleteParsed}`);
+            await runDeleteQuery2.runQuery();
+            await runDeleteQuery2x.runQuery();
+
             returnQuit();
             break;
         // Delete an employee
         case questions.set2DeleteQuestions.choices[2]:
-            inquirer.prompt([questions.set3DeleteEmployee1])
+            // ---------------QUERY INQUIRER CHOICES ROUND 2---------------------    
+            const employeeDeleteResults = await query.runDeleteQuery3.runQuery(); // Load query results for data 
+            const set3DeleteEmployee1 = new questions.ListQuestions('list', 'selEmployee', 'Select an employee to delete.', employeeDeleteResults);
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userEmployeeDeleteAnswer = await inquirer.prompt([set3DeleteEmployee1]); // Define user response
+            const userEmployeeDeleteParsed = userEmployeeDeleteAnswer.selEmployee.split('|')[0]; // Parse out relevant data for next query
+            // ---------------RUN UPDATE QUERY ---------------------
+            const runDeleteQuery3 = new query.UpdateQuery(`DELETE FROM employee WHERE id=${userEmployeeDeleteParsed}`);
+            await runDeleteQuery3.runQuery();
             returnQuit();
             break;
     }

@@ -39,18 +39,9 @@ const set3AddEmployee2 = new InputQuestions('input', 'entLast', 'Enter the emplo
 const set3AddEmployee3 = new ListQuestions('list', 'selRole', 'Select the employee`s role.', ['PLACEHOLDER_ADD_EMPLOYEE']);
 const set3AddEmployee4 = new ListQuestions('list', 'selManager', 'Select the employee`s manager.', ['PLACEHOLDER_ADD_EMPLOYEE']);
 
-// DELETE A DEPARTMENT QUESTIONS
-const set3DeleteDepartment1 = new ListQuestions('list', 'selDepartment', 'Select a department to delete.', ['PLACEHOLDER_DELETE_A_DEPARTMENT']);
-
-// DELETE A ROLE QUESTIONS
-const set3DeleteRole1 = new ListQuestions('list', 'selRole', 'Select a role to delete.', ['PLACEHOLDER_DELETE_A_ROLE']);
-
-// DELETE AN EMPLOYEE QUESTIONS
-const set3DeleteEmployee1 = new ListQuestions('list', 'selEmployee', 'Select an employee to delete.', ['PLACEHOLDER_DELETE_A_EMPLOYEE']);
-
 // FINAL QUESTION
 const set4ReturnQuit = new ListQuestions('list', 'returnHome', 'Would you like to return to the root menu or quit?', ['Return to Root Menu', 'Quit']);
 
-module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions,  set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set3DeleteDepartment1, set3DeleteRole1, set3DeleteEmployee1, set4ReturnQuit };
+module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions,  set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set4ReturnQuit };
 
 
