@@ -26,7 +26,7 @@ const set2DeleteQuestions = new ListQuestions('list', 'deleteQuestions', 'I want
 
 // Third set of questions //
 // VIEW ALL EMPLOYEES BY MANAGER QUESTIONS
-const set3ViewEmployeeManager = new ListQuestions('list', 'selManager', 'Select the name of the manager to see their direct reports.', query.popChoiceView1.choices);
+const set3ViewEmployeeManager = new ListQuestions('list', 'selManager', 'Select the name of the manager to see their direct reports.', []);
 
 // VIEW ALL EMPLOYEES BY DEPARTMENT QUESTIONS
 const set3ViewEmployeeDepartment = new ListQuestions('list', 'selDepartment', 'Select the name of the department to see its employees.', ['PLACEHOLDER_VIEW_DEPARTMENT_EMPLOYEES']);
@@ -65,6 +65,6 @@ const set3DeleteEmployee1 = new ListQuestions('list', 'selEmployee', 'Select an 
 // FINAL QUESTION
 const set4ReturnQuit = new ListQuestions('list', 'returnHome', 'Would you like to return to the root menu or quit?', ['Return to Root Menu', 'Quit']);
 
-module.exports = { set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions, set3ViewEmployeeManager, set3ViewEmployeeDepartment, set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set3UpdateEmployeeRole1, set3UpdateEmployeeRole2, set3UpdateEmployeeManager1, set3UpdateEmployeeManager2, set3DeleteDepartment1, set3DeleteRole1, set3DeleteEmployee1, set4ReturnQuit};
+module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions, set3ViewEmployeeManager, set3ViewEmployeeDepartment, set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set3UpdateEmployeeRole1, set3UpdateEmployeeRole2, set3UpdateEmployeeManager1, set3UpdateEmployeeManager2, set3DeleteDepartment1, set3DeleteRole1, set3DeleteEmployee1, set4ReturnQuit };
 
 

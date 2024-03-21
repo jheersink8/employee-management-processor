@@ -64,9 +64,17 @@ async function viewQuestions(result) {
             break;
         // View all employees by manager
         case questions.set2ViewQuestions.choices[3]:
+            // ------------------------------------
             // Load query results in question options
+            const results = await query.populateManagers.runQuery();
+   
             // Populate choices in question
-            await inquirer.prompt([questions.set3ViewEmployeeManager])
+            // await questions.populateManagers(results);
+
+            const set3ViewEmployeeManager = new questions.ListQuestions('list', 'selManager', 'Select the name of the manager to see their direct reports.', results);
+
+            // ------------------------------------
+            await inquirer.prompt([set3ViewEmployeeManager])
             await query.runViewQuery4.runQuery();
             returnQuit();
             break;

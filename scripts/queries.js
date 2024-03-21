@@ -8,7 +8,22 @@ const pool = new Pool({
     port: 5432,
 });
 
+//--------------------- BUILDING INQUIRER QUESTION QUERIES ---------------------//
+// Function to build choices from PostgreSQL
+function InquirerPopulateQuery(query) {
+    this.query = query
+    this.runQuery = async function () {
+        const { rows } = await pool.query(`${this.query}`);
+        const choices = rows[0].array_agg;
+        return choices;
+    };
+};
+
+// Populate managers into Inquirer choices
+const populateManagers = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (m.first_name,' ', m.last_name)) FROM employee e LEFT JOIN employee m ON e.manager_id = m.id WHERE m.first_name IS NOT NULL;");
+
 //--------------------- VIEW QUERIES ---------------------//
+// Constructor function for building "VIEW" related queries
 function ViewQuery(tableQuery) {
     this.tableQuery = tableQuery;
     this.runQuery = async function () {
@@ -39,4 +54,4 @@ const runViewQuery6 = new ViewQuery("SELECT department.name, SUM(role.salary) AS
 
 
 
-module.exports = { runViewQuery1, runViewQuery2, runViewQuery3, runViewQuery4, runViewQuery5, runViewQuery6, popChoiceView1 };
+module.exports = { populateManagers, runViewQuery1, runViewQuery2, runViewQuery3, runViewQuery4, runViewQuery5, runViewQuery6 };
