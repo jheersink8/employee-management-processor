@@ -64,18 +64,15 @@ async function viewQuestions(result) {
             break;
         // View all employees by manager
         case questions.set2ViewQuestions.choices[3]:
-            // ------------------------------------
-            // Load query results in question options
-            const results = await query.populateManagers.runQuery();
-   
-            // Populate choices in question
-            // await questions.populateManagers(results);
-
-            const set3ViewEmployeeManager = new questions.ListQuestions('list', 'selManager', 'Select the name of the manager to see their direct reports.', results);
-
-            // ------------------------------------
-            await inquirer.prompt([set3ViewEmployeeManager])
-            await query.runViewQuery4.runQuery();
+            // ---------------QUERY INQUIRER CHOICES---------------------
+            const results = await query.runViewQuery4.runQuery(); // Load query results for managers 
+            const set3ViewEmployeeManager = new questions.ListQuestions('list', 'selManager', 'Select the name of the manager to see their direct reports.', results); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userAnswer = await inquirer.prompt([set3ViewEmployeeManager]) // Define user response
+            const userAnswerParsed = userAnswer.selManager.split('|')[0]; // Parse out relevant data for next query
+            // ---------------RUN FINAL QUERY ---------------------
+            const runViewQuery4 = new query.ViewQuery(`SELECT CONCAT (id,' | ', first_name,' ',  last_name) FROM employee WHERE manager_id = ${userAnswerParsed}`);
+            await runViewQuery4.runQuery();
             returnQuit();
             break;
         // View all employees by department
