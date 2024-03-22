@@ -31,7 +31,6 @@ const set3AddDepartment1 = new InputQuestions('input', 'entDepartment', 'Enter t
 // ADD ROLE QUESTIONS
 const set3AddRole1 = new InputQuestions('input', 'entRole', 'Enter the name of the role to add.');
 const set3AddRole2 = new InputQuestions('input', 'entSalary', 'Enter the salary for the new role.');
-const set3AddRole3 = new ListQuestions('list', 'selDepartment', 'Select the department for the role.', ['PLACEHOLDER_ADD_ROLE']);
 
 // ADD EMPLOYEE QUESTIONS
 const set3AddEmployee1 = new InputQuestions('input', 'entFirst', 'Enter the employee`s first name.');
@@ -42,6 +41,6 @@ const set3AddEmployee4 = new ListQuestions('list', 'selManager', 'Select the emp
 // FINAL QUESTION
 const set4ReturnQuit = new ListQuestions('list', 'returnHome', 'Would you like to return to the root menu or quit?', ['Return to Root Menu', 'Quit']);
 
-module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions,  set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddRole3, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set4ReturnQuit };
+module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions,  set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set4ReturnQuit };
 
 

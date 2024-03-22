@@ -99,12 +99,14 @@ async function viewQuestions(result) {
 // This function asks the user prompts for adding data to the database
 async function addQuestions(result) {
     switch (result) {
-        // Add a department
+        // ---------------PROMPT DEPARTMENT---------------------
         case questions.set2AddQuestions.choices[0]:
             const userDepartmentAnswer = await inquirer.prompt([questions.set3AddDepartment1]);
+            const userDepartmentParsed = userDepartmentAnswer[questions.set3AddDepartment1.name];
 
+            // console.log(userDepartmentParsed);
 
-            // ADD QUERY HERE USING RESULTS FROM userDepartmentAnswer
+            // ADD QUERY HERE USING RESULTS FROM userDepartmentParsed
             // ------------------------------------------------------
             // ---------------RUN FINAL QUERY ---------------------
 
@@ -116,19 +118,25 @@ async function addQuestions(result) {
             break;
         // Add a role
         case questions.set2AddQuestions.choices[1]:
+            // ---------------PROMPT ROLE---------------------
             const userRoleAnswer = await inquirer.prompt([questions.set3AddRole1]);
+            const userRoleParsed = userRoleAnswer[questions.set3AddRole1.name];
+            // ---------------PROMPT SALARY---------------------
             const userSalaryAnswer = await inquirer.prompt([questions.set3AddRole2]);
+            const userSalaryParsed = userSalaryAnswer[questions.set3AddRole2.name];
             // ---------------QUERY INQUIRER CHOICES---------------------
-            const selDepartmentResults = await query.runAddQuery1.runQuery(); // Load query results for data 
-            const set3AddRole3 = new questions.ListQuestions('list', 'selDepartment', 'Select the department for the role.', selDepartmentResults); // Populate choices in question
+            const departmentAddResults = await query.runAddQuery1.runQuery(); // Load query results for data 
+            const set3AddRole3 = new questions.ListQuestions('list', 'selDepartment', 'Select the department for the role.', departmentAddResults); // Populate choices in question
             // ---------------PRESENT QUERIED RESULTS---------------------
             const userSelDepartmentAnswer = await inquirer.prompt([set3AddRole3]); // Define user response
             const userSelDepartmentParsed = userSelDepartmentAnswer.selDepartment.split('|')[0]; // Parse out relevant data for next query
 
-            // ADD QUERY HERE USING RESULTS FROM userDepartmentAnswer
+            // ADD QUERY HERE USING RESULTS FROM userRoleParsed, userSalaryParsed, userSelDepartmentParsed
             // ------------------------------------------------------
             // ---------------RUN FINAL QUERY ---------------------
-
+            // console.log(userRoleParsed)
+            // console.log(userSalaryParsed)
+            // console.log(userSelDepartmentParsed)
 
             // ------------------------------------------------------
 
@@ -137,11 +145,38 @@ async function addQuestions(result) {
             break;
         // Add an employee
         case questions.set2AddQuestions.choices[2]:
-            inquirer.prompt([
-                questions.set3AddEmployee1,
-                questions.set3AddEmployee2,
-                questions.set3AddEmployee3,
-                questions.set3AddEmployee4,])
+            // ---------------PROMPT FIRST NAME---------------------
+            const userFirstNameAnswer = await inquirer.prompt([questions.set3AddEmployee1]);
+            const userFirstNameParsed = userFirstNameAnswer[questions.set3AddEmployee1.name];
+            // ---------------PROMPT LAST NAME---------------------    
+            const userLastNameAnswer = await inquirer.prompt([questions.set3AddEmployee2]);
+            const userLastNameParsed = userLastNameAnswer[questions.set3AddEmployee2.name];
+            // ---------------QUERY ROLE INQUIRER CHOICES ---------------------
+            const roleAddResults = await query.runAddQuery1.runQuery(); // Load query results for data 
+            const set3AddEmployee3 = new questions.ListQuestions('list', 'selRole', 'Select the employee`s role.', roleAddResults); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userRoleAddAnswer = await inquirer.prompt([set3AddEmployee3]); // Define user response
+            const userRoleAddParsed = userRoleAddAnswer.selRole.split('|')[0]; // Parse out relevant data for next query
+            // ---------------QUERY MANAGER INQUIRER CHOICES ---------------------
+            const managerAddResults = await query.runAddQuery2.runQuery(); // Load query results for data 
+            const set3AddEmployee4 = new questions.ListQuestions('list', 'selManager', 'Select the employee`s manager.', managerAddResults); // Populate choices in question
+            // ---------------PRESENT QUERIED RESULTS---------------------
+            const userManagerAddAnswer = await inquirer.prompt([set3AddEmployee4]); // Define user response
+            const userManagerAddParsed = userManagerAddAnswer.selManager.split('|')[0]; // Parse out relevant data for next query
+
+            console.log(userFirstNameParsed);
+            console.log(userLastNameParsed);
+            console.log(userRoleAddParsed);
+            console.log(userManagerAddParsed);
+
+            // ADD QUERY HERE USING RESULTS FROM userFirstNameParsed, userLastNameParsed, userRoleAddParsed, userRoleAddParsed
+            // ------------------------------------------------------
+            // ---------------RUN FINAL QUERY ---------------------
+            // console.log(userRoleParsed)
+            // console.log(userSalaryParsed)
+            // console.log(userSelDepartmentParsed)
+
+            // ------------------------------------------------------
             returnQuit();
             break;
     }

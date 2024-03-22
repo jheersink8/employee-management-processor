@@ -15,7 +15,6 @@ function InquirerPopulateQuery(query) {
     this.runQuery = async function () {
         const { rows } = await pool.query(`${this.query}`);
         const choices = rows[0].array_agg;
-        // console.log(choices);
         return choices;
     };
 };
@@ -53,6 +52,8 @@ function AddQuery(tableQuery) {
 
 // Add a role to the organization
 const runAddQuery1 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (id,' | ', name)) FROM department");
+// Add an employee to the organization
+const runAddQuery2 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (m.id,' | ',m.first_name,' ', m.last_name)) FROM employee e LEFT JOIN employee m ON e.manager_id = m.id WHERE m.first_name IS NOT NULL;");
 
 //--------------------- UPDATE QUERIES ---------------------//
 // Constructor function for building "UPDATE" related queries
@@ -84,4 +85,4 @@ const runDeleteQuery2 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CON
 // Delete an employee
 const runDeleteQuery3 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (id,' | ', first_name,' ', last_name)) FROM employee");
 
-module.exports = { ViewQuery, AddQuery, UpdateQuery, DeleteQuery, runViewQuery1, runViewQuery2, runViewQuery3, runViewQuery4, runViewQuery5, runViewQuery6, runAddQuery1, runUpdateQuery1, runUpdateQuery2, runUpdateQuery3, runUpdateQuery4, runDeleteQuery1, runDeleteQuery2, runDeleteQuery3 };
+module.exports = { ViewQuery, AddQuery, UpdateQuery, DeleteQuery, runViewQuery1, runViewQuery2, runViewQuery3, runViewQuery4, runViewQuery5, runViewQuery6, runAddQuery1, runAddQuery2, runUpdateQuery1, runUpdateQuery2, runUpdateQuery3, runUpdateQuery4, runDeleteQuery1, runDeleteQuery2, runDeleteQuery3 };
