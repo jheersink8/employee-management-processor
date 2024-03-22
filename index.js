@@ -104,12 +104,11 @@ async function addQuestions(result) {
             const userDepartmentAnswer = await inquirer.prompt([questions.set3AddDepartment1]);
             const userDepartmentParsed = userDepartmentAnswer[questions.set3AddDepartment1.name];
 
-            // console.log(userDepartmentParsed);
-
             // ADD QUERY HERE USING RESULTS FROM userDepartmentParsed
             // ------------------------------------------------------
             // ---------------RUN FINAL QUERY ---------------------
 
+            // console.log(userDepartmentParsed);
 
             // ------------------------------------------------------
 
@@ -130,10 +129,10 @@ async function addQuestions(result) {
             // ---------------PRESENT QUERIED RESULTS---------------------
             const userSelDepartmentAnswer = await inquirer.prompt([set3AddRole3]); // Define user response
             const userSelDepartmentParsed = userSelDepartmentAnswer.selDepartment.split('|')[0]; // Parse out relevant data for next query
-
             // ADD QUERY HERE USING RESULTS FROM userRoleParsed, userSalaryParsed, userSelDepartmentParsed
             // ------------------------------------------------------
             // ---------------RUN FINAL QUERY ---------------------
+
             // console.log(userRoleParsed)
             // console.log(userSalaryParsed)
             // console.log(userSelDepartmentParsed)
@@ -163,18 +162,14 @@ async function addQuestions(result) {
             // ---------------PRESENT QUERIED RESULTS---------------------
             const userManagerAddAnswer = await inquirer.prompt([set3AddEmployee4]); // Define user response
             const userManagerAddParsed = userManagerAddAnswer.selManager.split('|')[0]; // Parse out relevant data for next query
+            // ADD QUERY HERE USING RESULTS FROM userFirstNameParsed, userLastNameParsed, userRoleAddParsed, userRoleAddParsed
+            // ------------------------------------------------------
+            // ---------------RUN FINAL QUERY ---------------------
 
             console.log(userFirstNameParsed);
             console.log(userLastNameParsed);
             console.log(userRoleAddParsed);
             console.log(userManagerAddParsed);
-
-            // ADD QUERY HERE USING RESULTS FROM userFirstNameParsed, userLastNameParsed, userRoleAddParsed, userRoleAddParsed
-            // ------------------------------------------------------
-            // ---------------RUN FINAL QUERY ---------------------
-            // console.log(userRoleParsed)
-            // console.log(userSalaryParsed)
-            // console.log(userSelDepartmentParsed)
 
             // ------------------------------------------------------
             returnQuit();

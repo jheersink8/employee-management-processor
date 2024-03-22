@@ -35,12 +35,9 @@ const set3AddRole2 = new InputQuestions('input', 'entSalary', 'Enter the salary 
 // ADD EMPLOYEE QUESTIONS
 const set3AddEmployee1 = new InputQuestions('input', 'entFirst', 'Enter the employee`s first name.');
 const set3AddEmployee2 = new InputQuestions('input', 'entLast', 'Enter the employee`s last name.');
-const set3AddEmployee3 = new ListQuestions('list', 'selRole', 'Select the employee`s role.', ['PLACEHOLDER_ADD_EMPLOYEE']);
-const set3AddEmployee4 = new ListQuestions('list', 'selManager', 'Select the employee`s manager.', ['PLACEHOLDER_ADD_EMPLOYEE']);
 
 // FINAL QUESTION
 const set4ReturnQuit = new ListQuestions('list', 'returnHome', 'Would you like to return to the root menu or quit?', ['Return to Root Menu', 'Quit']);
-
-module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions,  set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddEmployee1, set3AddEmployee2, set3AddEmployee3, set3AddEmployee4, set4ReturnQuit };
+module.exports = { ListQuestions, set1questions, set2ViewQuestions, set2AddQuestions, set2UpdateQuestions, set2DeleteQuestions, set3AddDepartment1, set3AddRole1, set3AddRole2, set3AddEmployee1, set3AddEmployee2, set4ReturnQuit };
 
 
