@@ -1,7 +1,7 @@
 # Employee Management Processor 
 GitHub Repo: https://github.com/jheersink8/employee-management-processor
 
-Deployed Site: {ADD LATER}
+Deployed Site: https://drive.google.com/file/d/13l1FiTamrk5sAVol6SXI48gUcDyi_wWV/view
 
 ## Description
 This tool is used for users to view employees at their company. They can view predefined queried tables, add data to the database, delete data, and update information. This tool demonstrates a working knowledge of the following tools: 

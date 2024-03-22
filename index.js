@@ -3,7 +3,7 @@ const questions = require('./scripts/questions');
 const query = require('./scripts/queries')
 
 function init() {
-    console.log("Welcome to the EMP (Employee Management Portal)!")
+    console.log("Welcome to the EMP (Employee Management Processor)! Select an option below to begin the workflow.")
     inquirer.prompt([
         // SET 1 QUESTIONS - Initial question to determine if query is View, Add, Edit, or Delete
         questions.set1questions,
