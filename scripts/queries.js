@@ -51,7 +51,7 @@ function AddQuery(tableQuery) {
 };
 
 // Add a role to the organization
-const runAddQuery1 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (id,' | ', name)) FROM department");
+const runAddQuery1 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (id,' | ', title)) FROM role");
 // Add an employee to the organization
 const runAddQuery2 = new InquirerPopulateQuery("SELECT array_agg(DISTINCT CONCAT (m.id,' | ',m.first_name,' ', m.last_name)) FROM employee e LEFT JOIN employee m ON e.manager_id = m.id WHERE m.first_name IS NOT NULL;");
 

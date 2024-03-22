@@ -123,19 +123,12 @@ async function addQuestions(result) {
             // ---------------PRESENT QUERIED RESULTS---------------------
             const userSelDepartmentAnswer = await inquirer.prompt([set3AddRole3]); // Define user response
             const userSelDepartmentParsed = userSelDepartmentAnswer.selDepartment.split('|')[0]; // Parse out relevant data for next query
-            // ADD QUERY HERE USING RESULTS FROM userRoleParsed, userSalaryParsed, userSelDepartmentParsed
-            // ------------------------------------------------------
             // ---------------RUN FINAL QUERY ---------------------
-
-            // console.log(userRoleParsed)
-            // console.log(userSalaryParsed)
-            // console.log(userSelDepartmentParsed)
-
-            // ------------------------------------------------------
-
-
+            const runAddQuery1 = new query.AddQuery(`INSERT INTO role (title, salary, department_id) VALUES ('${userRoleParsed}', '${userSalaryParsed}', '${userSelDepartmentParsed}')`);
+            await runAddQuery1.runQuery();
             returnQuit();
             break;
+
         // Add an employee
         case questions.set2AddQuestions.choices[2]:
             // ---------------PROMPT FIRST NAME---------------------
@@ -156,16 +149,9 @@ async function addQuestions(result) {
             // ---------------PRESENT QUERIED RESULTS---------------------
             const userManagerAddAnswer = await inquirer.prompt([set3AddEmployee4]); // Define user response
             const userManagerAddParsed = userManagerAddAnswer.selManager.split('|')[0]; // Parse out relevant data for next query
-            // ADD QUERY HERE USING RESULTS FROM userFirstNameParsed, userLastNameParsed, userRoleAddParsed, userRoleAddParsed
-            // ------------------------------------------------------
             // ---------------RUN FINAL QUERY ---------------------
-
-            // console.log(userFirstNameParsed);
-            // console.log(userLastNameParsed);
-            // console.log(userRoleAddParsed);
-            // console.log(userManagerAddParsed);
-
-            // ------------------------------------------------------
+            const runAddQuery2 = new query.AddQuery(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES ('${userFirstNameParsed}', '${userLastNameParsed}', '${userRoleAddParsed}', '${userManagerAddParsed}')`);
+            await runAddQuery2.runQuery();
             returnQuit();
             break;
     }
