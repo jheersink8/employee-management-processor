@@ -46,7 +46,7 @@ const runViewQuery6 = new ViewQuery("SELECT department.name, SUM(role.salary) AS
 function AddQuery(tableQuery) {
     this.tableQuery = tableQuery;
     this.runQuery = async function () {
-        const { rows } = await pool.query(`${this.tableQuery}`);
+        await pool.query(`${this.tableQuery}`);
     };
 };
 

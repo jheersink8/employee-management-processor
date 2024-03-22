@@ -103,18 +103,12 @@ async function addQuestions(result) {
         case questions.set2AddQuestions.choices[0]:
             const userDepartmentAnswer = await inquirer.prompt([questions.set3AddDepartment1]);
             const userDepartmentParsed = userDepartmentAnswer[questions.set3AddDepartment1.name];
-
-            // ADD QUERY HERE USING RESULTS FROM userDepartmentParsed
-            // ------------------------------------------------------
             // ---------------RUN FINAL QUERY ---------------------
-
-            // console.log(userDepartmentParsed);
-
-            // ------------------------------------------------------
-
-
+            const runAddQuery = new query.AddQuery(`INSERT INTO department (name) VALUES ('${userDepartmentParsed}')`);
+            await runAddQuery.runQuery();
             returnQuit();
             break;
+
         // Add a role
         case questions.set2AddQuestions.choices[1]:
             // ---------------PROMPT ROLE---------------------
@@ -166,10 +160,10 @@ async function addQuestions(result) {
             // ------------------------------------------------------
             // ---------------RUN FINAL QUERY ---------------------
 
-            console.log(userFirstNameParsed);
-            console.log(userLastNameParsed);
-            console.log(userRoleAddParsed);
-            console.log(userManagerAddParsed);
+            // console.log(userFirstNameParsed);
+            // console.log(userLastNameParsed);
+            // console.log(userRoleAddParsed);
+            // console.log(userManagerAddParsed);
 
             // ------------------------------------------------------
             returnQuit();
@@ -187,14 +181,12 @@ async function updateQuestions(result) {
             // ---------------PRESENT QUERIED RESULTS---------------------
             const userEmployeeUpdateRoleAnswer1 = await inquirer.prompt([set3UpdateEmployeeRole1]); // Define user response
             const userEmployeeUpdateRoleParsed1 = userEmployeeUpdateRoleAnswer1.selEmployee.split('|')[0]; // Parse out relevant data for next query
-
             // ---------------QUERY INQUIRER CHOICES ROUND 2---------------------    
             const roleUpdateResults = await query.runUpdateQuery2.runQuery(); // Load query results for data 
             const set3UpdateEmployeeRole2 = new questions.ListQuestions('list', 'selRole', 'Select a role for the employee.', roleUpdateResults); // Populate choices in question
             // ---------------PRESENT QUERIED RESULTS---------------------
             const userEmployeeUpdateRoleAnswer2 = await inquirer.prompt([set3UpdateEmployeeRole2]); // Define user response
             const userEmployeeUpdateRoleParsed2 = userEmployeeUpdateRoleAnswer2.selRole.split('|')[0]; // Parse out relevant data for next query
-
             // ---------------RUN UPDATE QUERY ---------------------
             const runUpdateQuery = new query.UpdateQuery(`UPDATE employee SET role_id=${userEmployeeUpdateRoleParsed2} WHERE id=${userEmployeeUpdateRoleParsed1}`);
             await runUpdateQuery.runQuery();
